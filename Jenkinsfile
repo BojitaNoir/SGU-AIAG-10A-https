@@ -11,7 +11,7 @@ pipeline {
             steps {
                 bat '''
                     // down -v --remove-orphans para limpiar recursos del proyecto actual y previos.
-                    docker compose -p sgu-aiag-10a down -v --remove-orphans || exit /b 0
+                    docker compose -p sgu-aiag-10a-main down -v --remove-orphans || exit /b 0
                     
                     // Si tienes volúmenes con nombres fijos (ej: sgu-volume), elimínalos aquí
                     // ya que no se borran con 'down -v'. Cambia 'sgu-volume' por el nombre exacto si es diferente.
@@ -63,7 +63,7 @@ pipeline {
         stage('Construyendo y Desplegando Servicios...') {
             steps {
                 bat '''
-                    docker compose -p sgu-aiag-10a up --build -d
+                    docker compose -p sgu-aiag-10a-main up --build -d
                 '''
             }
         }
